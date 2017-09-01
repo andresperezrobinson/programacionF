@@ -1,0 +1,192 @@
+\documentclass{article}
+
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+
+% used in maketitle
+\title{Actividad 1}
+\author{César Andrés Pérez Robinson \\
+Departamento de Física \\
+Universidad de Sonora}
+\date{ 31 de Agosto de 2017}
+
+% Enable SageTeX to run SageMath code right inside this LaTeX file.
+% documentation: http://mirrors.ctan.org/macros/latex/contrib/sagetex/sagetexpackage.pdf
+% \usepackage{sagetex}
+
+\begin{document}
+\maketitle
+% son comentarios, no aparecen en el documento
+\section{Introducción}
+Se presenta un resumen de distintos comandos vistos en clase y
+una descripción básica sobre ellos.
+
+\subsection{Comandos de Bash}
+\begin{verbatim}
+Comando-Descripción
+	Enlista los archivos y carpetas
+	ej: ls (Enlista los archivos del directorio en uso).
+	    ls -a (Enlista todo).
+	    ls -al (Enlista todo en formato grande).
+	    ls /dir (Enlista los archivos en el directorio 
+        especificado /dir).
+	    pwd (Nombra el directorio en uso).
+	    cd (Cambia el directorio en uso).
+	    rm (Borra los archivos).
+	    mkdir (Crea un directorio).
+	    mv (Mueve o renombra archivos y directorios).
+	    man (Abre el manual).
+	    cp (Copiar y pegar archivos y directorios).
+	    * (Todos los nombres relacionados).
+	    cat (Ver un archivo).
+\end{verbatim}
+\subsection{"Learning the Shell"}
+\subsubsection{What is Shell?}
+\begin{verbatim}
+   	"The Shell" es un programa que toma comandos del teclado y 
+    se los otorga al sistema operativo para ser ejecutados.
+
+	 What's a "Terminal"?
+	     Es un programa que abre una ventana y te deja 
+         interactuar con "The Shell"
+\end{verbatim}
+\subsubsection{Navigation}
+\begin{verbatim}
+Introducción a los comandos: pwd (print working directory), 
+cd (change directory) y ls (list files and directories).
+
+a) File System Organization
+   	Los archivos en Linux estan organizados en lo que se 
+    llama una estructura de directorios jerárgicos.
+    Significa que estan organizados en un patrón que 
+    resembla un arbol de direcorios (folders), que pueden 
+    contener archivos u otros directorios.
+
+	 pwd
+	     Para nombrar el directorio en uso
+	 cd
+	     Para cambiar de directorio en uso
+	 ls
+	     Para enlistar los contenidos del directorio en uso
+	 ls /bin
+	     Para enlistar los archivos del directorio /bin (o
+	     cualquier directorio especificado)
+
+b) Long Format
+   	En el uso de ls -l
+	     Nombre del Archivo
+	     Tiempo de Modificación
+     Tamaño
+	     Grupo
+	     Dueño
+	     Permisos del Archivo
+\end{verbatim}
+\subsubsection{A Guided Tour}
+\begin{verbatim}
+Se encuentran una lista de directorios interesantes dignos a
+explorar.
+
+      /boot
+      /etc
+     	  Contiene configuración del sistema.
+      /bin, /usr/sbin
+     	  Contiene programas para el sistema de administración.
+      /var
+     	  Contien archivos que cambian mientras el sistema esta
+     operacional.
+      /lib
+     	  Se guardan las librerias compartidas.
+\end{verbatim}
+\subsubsection{Manipulating Files}
+\begin{verbatim}
+Introducción a los comandos
+		cp
+		mv
+		rm
+		mkdir
+
+a) Wildcards
+	 * (Matches any characters)
+	 ? (Mathces any single character)
+Usando Wildcards es posible construir una selección
+sofisticada de criterios para archivos.
+	 *        Todos los nombres de archivos
+	g*        Todos los archivos que empiecen con la letra g
+	b*.txt    Todos los archivos que empiecen con la letra b 
+          y terminen en .txt
+	Data???   Cualquier archivo que empiece con la palabra 
+          Data y exactamente tres más caracteres.
+	[abc]*    Cualquier archivo que empiece con la letra
+	          a, b o c, seguido de cualquier otros caracteres.
+
+b) cp (Este programa copia archivos y directorios)
+	Comandos
+	cp file1 file2    Copia los contenidos del file1 al file2.
+                  Si  file2 no existe, es creado, de la otra 
+                  manera file2 es sobreescrito con los 
+                  contenidos de file1.
+	cp i file1 file2  Como el comando anterior, sin embargo 
+                  si el  file2 existe, el usuario es solicidato 
+                  antes de ser sobreescrito con file1.
+	cp file1 dir1     Copia los contenidos del file1 dentro del 
+                  directorio dir1.
+	cp -R dir1 dir2   Copia los contenidos del directorio dir1.
+                  Si el directorio dir2 no existe, es creado. 
+                  De lo contrario, crea un directorio llamado 
+                  dir1 dentro de otro llamado dir2.
+
+c) mv (Mueve o renombra archivos y diccionarios dependiendo
+	de como es usado)
+	   	Comandos
+	mv file1 file2             Si file2 no existe, entonces file1
+                           es renombrado file2. Si file2 existe,
+                           sus contenidos son remplacados con el 
+                           contenido de file1.
+	mv -i file1 file2          Como en el comando anterior,
+	                           solo que ahora el usuario  es 
+                           solicitado antes de sobreescribir 
+                           con los contenidos de file2.
+	mv file1 file2 file3 dir1  Los archivos son movidos al 
+                           directorio dir1.
+    mv dir1 dir2           Si dir2 no existe entonces dir1 es 
+                           renombrado dir2. Si dir2 existe, el 
+                           directorio dir1 es movido al dir2.
+
+d) rm (Borra archivos y directorios)
+	     Comandos
+	rm file1 file2      Borra los archivos file1 file2
+	rm -i file1 file2   Como el comando anterior pero el usuario
+                    es solicitado antes de borrar cada archivo.
+	rm -r dir1 dir2     Borra los directorios dir1 y dir2 
+                    junto con sus archivos.
+	CUIDADO CON rm !!!
+
+e) mkdir (Crea directorios)
+
+f) Usando Comandos con Wildcards
+	cp *.txt text_files             Copia los archivos del 
+                                directorio en uso con nombre al 
+                                directorio existente llamado 
+                                "text_files".
+	mv my_dir ../*.bak my_new_dir   Mueve el subdirectorio my_dir
+                                y los archivos cuya terminación
+                                sea "bak" del directorio padre del
+                                directorio en uso al directorio
+                                existente llamado my_new_dir.
+	rm *~                           Borra todos los archivos del 
+                                directorio en uso cuya terminación
+                                sea "~"
+
+\end{verbatim}
+\subsubsection{Pruebas}
+\begin{equation}
+F=ma=a \frac{dv}{dt}
+\end{equation}
+\end{document}

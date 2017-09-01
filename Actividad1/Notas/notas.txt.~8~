@@ -1,0 +1,206 @@
+1. Para guardar Ctrl-x, Ctrl-s (Save)
+2. Para salir Ctrl-x, Ctrl-c (quit)
+3. emacs notas.txt
+
+Comando-Descripción
+	Enlista los archivos y carpetas
+	ej: ls (Enlista los archivos del directorio en uso)
+	    ls -a (Enlista todo)
+	    ls -al (Enlista todo en formato grande)
+	    ls /dir (Enlista los archivos en el directorio especificado /dir)
+	    pwd (Nombra el directorio en uso)
+	    cd (Cambia el directorio en uso)
+	    rm (Borra los archivos)
+	    mkdir (Crea un directorio)
+	    mv (Mueve o renombra archivos y directorios)
+	    man (Abre el manual)
+	    cp (Copiar y pegar archivos y directorios)
+	    * (Todos los nombres relacionados)
+
+
+
+
+	       	   Bitácora de "Learning the Shell"
+
+1. What is "The Shell"?
+   	"The Shell" es un programa que toma comandos del teclado y se los otorga al sistema operativo para ser ejecutados.
+
+	1.1. What's a "Terminal"?
+	     Es un programa que abre una ventana y te deja interactuar con "The Shell"
+
+
+2. Navigation
+   Introducción a los comandos: pwd (print working directory), cd (change directory) y ls (list files and directories).
+
+   2.1. File System Organization
+   	Los archivos en Linux estan organizados en lo que se llama una
+   	estructura de directorios jerárgicos. Significa que estan
+   	organizados en un patrón que resembla un arbol de direcorios
+   	(folders), que pueden contener archivos u otros directorios.
+
+
+	2.2. pwd
+	     Para nombrar el directorio en uso
+	2.3. cd
+	     Para cambiar de directorio en uso
+	2.4. ls
+	     Para enlistar los contenidos del directorio en uso
+	     2.4.1. ls /bin
+	     	    Para enlistar los archivos del directorio /bin (o
+	     cualquier directorio especificado)
+
+   2.2. Long Format
+   	En el uso de ls -l
+	
+	2.2.1. Nombre del Archivo
+	2.2.2. Tiempo de Modificación
+	2.2.3. Tamaño
+	2.2.4. Grupo
+	2.2.5. Dueño
+	2.2.6. Permisos del Archivo
+
+
+3. A Guided Tour
+     Se encuentran una lista de directorios interesantes dignos a
+     explorar.
+
+     3.1. /boot
+     3.2. /etc
+     	  Contiene configuración del sistema.
+     3.3. /bin, /usr/sbin
+     	  Contiene programas para el sistema de administración
+     3.4. /var
+     	  Contien archivos que cambian mientras el sistema esta
+     operacional
+     3.5. /lib
+     	  Se guardan las librerias compartidas
+
+
+
+4. Manipulating Files
+   		Introducción a los comandos
+		cp
+		mv
+		rm
+		mkdir
+
+	4.1. Wildcards
+	     4.1.1. * (Matches any characters)
+	     4.1.2. ? (Mathces any single character)
+	Usando Wildcards es posible construir una selección
+	     sofisticada de criterios para archivos.
+	     4.1.3. * Todos los nombres de archivos
+	     4.1.4. g* Todos los archivos que empiecen con la letra g
+	     4.1.5. b*.txt Todos los archivos que empiecen con la
+	     	    letra b y terminen en .txt
+	     4.1.6. Data??? Cualquier archivo que empiece con la
+	     	    palabra Data y exactamente tres más caracteres.
+	     4.1.7. [abc]* Cualquier archivo que empiece con la letra
+	     a, b o c, seguido de cualquier otros caracteres.
+
+	4.2. cp (Este programa copia archivos y directorios)
+	     Comandos
+	     4.2.1. cp file1 file2  Copia los contenidos del file1 al
+	     	     file2. Si file2 no existe, es creado, de la otra
+	     	     manera file2 es sobreescrito con los contenidos
+	     	     de file1.
+	     4.2.2. cp i file1 file2 Como el comando anterior sin
+	     	     embargo si el file2 existe, el usuario es
+	     	     solicidato antes de ser sobreescrito con file1.
+	     4.2.3. cp file1 dir1 Copia los contenidos del file1
+	     	     dentro del directorio dir1.
+	     4.2.4. cp -R dir1 dir2 Copia los contenidos del
+	     	    directorio dir1. Si el directorio dir2 no existe,
+	     	    es creado. De lo contrario, crea un directorio
+	     	    llamado dir1 dentro de otro llamado dir2.
+
+	4.3. mv (Mueve o renombra archivos y diccionarios dependiendo
+	de como es usado)
+	   	Comandos
+	     4.3.1. mv file1 file2  Si file2 no existe, entonces file1
+	     es renombrado file2. Si file2 existe, sus contenidos son
+	     remplacados con el contenido de file1.
+	     4.3.2. mv -i file1 file2  Como en el comando anterior,
+	     solo que ahora el usuario  es solicitado antes de sobreescribir
+	     con los contenidos de file2.
+	     4.3.3. mv file1 file2 file3 dir1  Los archivos son
+	     movidos al directorio dir1.
+	     4.3.4. mv dir1 dir2  Si dir2 no existe entonces dir1 es
+	     renombrado dir2. Si dir2 existe, el directorio dir1 es movido
+	     al dir2.
+
+	4.4. rm (Borra archivos y directorios)
+	     Comandos
+	     4.4.1. rm file1 file2  Borra los archivos file1 file2
+	     4.4.2. rm -i file1 file2  Como el comando anterior pero
+	     el usuario es solicitado antes de borrar cada archivo.
+	     4.4.3. rm -r dir1 dir2  Borra los directorios dir1 y dir2
+	     junto con sus archivos.
+	CUIDADO CON rm !!!
+
+	4.5. mkdir (Crea directorios)
+
+	4.6. Usando Comandos con Wildcards
+	     4.6.1. cp *.txt text_files  Copia los archivos del
+	     directorio en uso con nombre cuya terminación sea ".txt"
+	     al directorio existente llamado "text_files".
+	     4.6.2. mv my_dir ../*.bak my_new_dir  Mueve el
+	     subdirectorio my_dir y los archivos cuya terminación sea
+	     "bak" del directorio padre del directorio en uso al
+	     directorio existente llamado my_new_dir.
+	     4.6.3. rm *~ Borra todos los archivos del directorio en
+	     uso cuya terminación sea "~"
+	
+
+
+
+
+
+
+
+
+
+
+	       	 Bitácora de "Linux Tutorial"
+
+1. The Command Line
+
+   
+		   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	    Bitácora de Temas
+
+1. PENSAMIENTO COMPUTACIONAL
+
+   "Proceso de pensamiento involucrado al formular un problema y
+   expresar sus soluciones de tal forma que una computadora, pueda
+   llevar a cabo dicha tarea"
+
+
+   1.1 Tres etapas del Pensamiento Computacional.
+   
+       1.1.1 Formulación del Problema (abstracción)
+       1.1.2 Expresión de la solución (automatización)
+       1.1.3 Ejecución de la solución y evaluación (análisis)
+
+
+2. LINUX
+
+   "Sistema Operativo" regido por la licenciade software libre GNU.
+   Derivado de una versión del sistema operativo multitarea y
+   multiusuario Unix. 
+   

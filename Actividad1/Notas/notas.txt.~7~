@@ -1,0 +1,113 @@
+1. Para guardar Ctrl-x, Ctrl-s (Save)
+2. Para salir Ctrl-x, Ctrl-c (quit)
+3. emacs notas.txt
+
+Comando-Descripción
+	Enlista los archivos y carpetas
+	ej: ls (Enlista los archivos del directorio en uso)
+	    ls -a (Enlista todo)
+	    ls -al (Enlista todo en formato grande)
+	    ls /dir (Enlista los archivos en el directorio
+	especificado /dir)
+	    pwd (Nombra el directorio en uso)
+	    cd (Cambia el directorio en uso)
+	    
+
+
+
+
+	       	   Bitácora de "Learning the Shell"
+
+1. What is "The Shell"?
+   	"The Shell" es un programa que toma comandos del teclado y se
+   	los otorga al sistema operativo para ser ejecutados.
+
+	1.1. What's a "Terminal"?
+	     Es un programa que abre una ventana y te deja interactuar
+	     con "The Shell"
+
+
+2. Navigation
+   Introducción a los comandos: pwd (print working directory), cd
+   (change directory) y ls (list files and directories).
+
+   2.1. File System Organization
+   	Los archivos en Linux estan organizados en lo que se llama una
+   	estructura de directorios jerárgicos. Significa que estan
+   	organizados en un patrón que resembla un arbol de direcorios
+   	(folders), que pueden contener archivos u otros directorios.
+
+
+	2.2. pwd
+	     Para nombrar el directorio en uso
+	2.3. cd
+	     Para cambiar de directorio en uso
+	2.4. ls
+	     Para enlistar los contenidos del directorio en uso
+	     2.4.1. ls /bin
+	     	    Para enlistar los archivos del directorio /bin (o
+	     cualquier directorio especificado)
+
+   2.2. Long Format
+   	En el uso de ls -l
+	
+	2.2.1. Nombre del Archivo
+	2.2.2. Tiempo de Modificación
+	2.2.3. Tamaño
+	2.2.4. Grupo
+	2.2.5. Dueño
+	2.2.6. Permisos del Archivo
+   
+
+
+
+
+
+
+
+
+
+
+	       	 Bitácora de "Linux Tutorial"
+
+1. The Command Line
+
+   
+		   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	    Bitácora de Temas
+
+1. PENSAMIENTO COMPUTACIONAL
+
+   "Proceso de pensamiento involucrado al formular un problema y
+   expresar sus soluciones de tal forma que una computadora, pueda
+   llevar a cabo dicha tarea"
+
+
+   1.1 Tres etapas del Pensamiento Computacional.
+   
+       1.1.1 Formulación del Problema (abstracción)
+       1.1.2 Expresión de la solución (automatización)
+       1.1.3 Ejecución de la solución y evaluación (análisis)
+
+
+2. LINUX
+
+   "Sistema Operativo" regido por la licenciade software libre GNU.
+   Derivado de una versión del sistema operativo multitarea y
+   multiusuario Unix. 
+   

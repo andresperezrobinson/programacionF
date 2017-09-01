@@ -1,0 +1,9 @@
+1. Para guardar Ctrl-x, Ctrl-s (Save)
+2. Para salir Ctrl-x, Ctrl-c (quit)
+3. emacs notas.txt
+
+Comando Descripción
+	Enlista los archivos y car4petas
+	ej: ls -a (Enlista todo)
+	    ls -al (Enlista todo en formato grande)
+	    
