@@ -1,0 +1,188 @@
+\documentclass{article}
+
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+
+% used in maketitle
+\title{Evaluación 1}
+\author{César Andrés Pérez Robinson}
+
+% Enable SageTeX to run SageMath code right inside this LaTeX file.
+% documentation: http://mirrors.ctan.org/macros/latex/contrib/sagetex/sagetexpackage.pdf
+% \usepackage{sagetex}
+
+\begin{document}
+\maketitle
+\section{Volumen y área de una esfera}
+
+\subsection{Código utilizado}
+\begin{verbatim}
+
+
+!! cylinder.f90
+!! 
+!! Made by (Andres Perez Robinson)
+!! Login   <andres@ltsp139.example.com>
+!! 
+!! Started on  Mon Oct 30 11:10:23 2017 Andres Perez Robinson
+!! Last update Time-stamp: <2017-oct-30.lunes 11:38:19 (andres)>
+!
+
+  program cylinder
+
+! Calculate the surface area of a cylinder.
+!
+! Declare variables and constants.
+! constants=pi
+! variables=radius squared and height
+
+  implicit none    ! Require all variables to be explicitly declared
+
+  integer :: ierr
+  character(1) :: yn
+  real :: radius, height, area, volumen
+  real, parameter :: pi = 3.141592653589793
+
+  interactive_loop: do
+
+!   Prompt the user for radius and height
+!   and read them.
+
+    write (*,*) 'Enter radius'
+    read (*,*,iostat=ierr) radius
+
+!   If radius and height could not be read from input,
+!   then cycle through the loop.
+
+    if (ierr /= 0) then
+      write(*,*) 'Error, invalid input.'
+      cycle interactive_loop
+    end if
+
+!   Compute area.  The ** means "raise to a power."
+
+    volumen = pi * radius**3 * 4 / 3
+
+    area = 4 * pi * radius**2
+
+!   Write the input variables (radius, height)
+!   and output (area) to the screen.
+
+    write (*,'(1x,a7,f9.2,5x,a7,f9.2,5x,a5,f9.2)') &
+      'volumen=',volumen,'area=',area
+
+    yn = ' '
+    yn_loop: do
+      write(*,*) 'Perform another calculation? y[n]'
+      read(*,'(a1)') yn
+      if (yn=='y' .or. yn=='Y') exit yn_loop
+      if (yn=='n' .or. yn=='N' .or. yn==' ') exit interactive_loop
+    end do yn_loop
+
+  end do interactive_loop
+
+end program cylinder
+
+\end{verbatim}
+\subsection{Datos}
+A continuación se presentan una serie de radiosdistintos con sus respectivos volúmenes y áreas.
+\begin{table}[]
+\centering
+\caption{My caption}
+\label{my-label}
+\begin{tabular}{lll}
+\textbf{Radio} & \textbf{Volumen} & \textbf{Área} \\
+1              & 4.19             & 12.57         \\
+2              & 33.51            & 50.27         \\
+3              & 113.10           & 113.10        \\
+//             & //               & //            \\
+15             & 14137.17         & 2827.43       \\
+20             & 33350.32         & 5026.55       \\
+25             & 65449.85         & 7853.98      
+\end{tabular}
+\end{table}
+
+
+\section{Medias aritmética y armónica}
+
+\subsection{Código utilizado}
+\begin{verbatim}
+
+program summation
+implicit none
+integer ::  a
+real :: aritmetica, armonica
+real :: n, sum, sumi
+print*, "This program performs summations. Enter 0 to stop."
+open(unit=10, file="SumData.DAT")
+
+sum = 0
+n = 0
+sumi = 0.0
+do
+ print*, "Add:"
+ read*, a
+ if (a == 0) then
+  exit
+ else
+sum = sum + a
+end if
+
+   
+   n = (n + 1)
+   sumi = sumi + 1.0 / a
+   aritmetica = sum / n
+   armonica = n / sumi
+
+
+ write(10,*) a
+end do
+
+print*, "armonica =", armonica
+write(10, *) "armonica =", armonica
+
+print*, "aritmetica =", aritmetica
+write(10, *) "aritmetica =", aritmetica
+
+print*, "Summation =", sum
+write(10,*) "Summation =", sum
+close(10)
+
+end
+
+\end{verbatim}
+\subsection{Algunos ejemplos}
+Para los datos 
+\begin{verbatim}
+           1
+           2
+           3
+           4
+           5
+           6
+           7
+           8
+           9
+          10
+ Media armónica =   3.41417122    
+ Media aritmética =   5.50000000    
+ Sumatoria =   55.0000000    
+\end{verbatim}
+Para los datos
+\begin{verbatim}
+           1
+           4
+           4
+ Media armónica =   2.00000000    
+ Media aritmética =   3.00000000    
+ Sumatoria =   9.00000000 
+ \end{verbatim}
+ 
+\end{document}
