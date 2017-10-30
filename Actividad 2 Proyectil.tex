@@ -1,0 +1,142 @@
+\documentclass{article}
+
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+
+% used in maketitle
+\title{Movimiento Proyectil}
+\author{César Andrés Pérez Robinson}
+
+
+
+
+% Enable SageTeX to run SageMath code right inside this LaTeX file.
+% documentation: http://mirrors.ctan.org/macros/latex/contrib/sagetex/sagetexpackage.pdf
+% \usepackage{sagetex}
+\begin{document}
+
+
+\maketitle
+\section{Movimiento Proyectil}
+    El movimiento de un proyectil es un movimiento parabólico
+que describe una trayectoria en dos dimensiones y se produce
+cuando se lanza un cuerpo con velocidad inicial y formando 
+un ángulo teta con la horizontal. Dicho cuerpo está sometido
+a una aceleración constante g, dirigida hacia abajo.
+
+\subsection{¿Qué ángulo produce el mayor alcance?}
+
+    Es importante notar que el alcance y la altura máxima 
+del proyectil no depende de su masa. Por lo que el alcance y 
+la altura máxima es igual para todos los objetos que sean
+lanzados con la misma velocidad y dirección.
+   
+   El alcance horizontal x del proyectil es la distancia 
+horizontal que se desplaza cuando regresa a su altura 
+inicial (y = 0).
+
+    A continuar, se muestra en la Tabla 1 los resultados de 
+lanzar un proyectil con distintos ángulos a la misma
+velocidad inicial y se compara el despazamiento de cada
+proyectil cuando regresa a su altura inicial (y = 0), sobre
+los diferentes ángulos de lanzamiento.
+
+    Observación, en la Tabla 1 se presenta un error en donde 
+el valor de la altura (y) no es completamente 0, sin embargo,
+la diferencia entre estos valores no es significativa.
+
+
+    
+\begin{table}[]
+\centering
+\caption{Tiro de Proyectil}
+\label{my-label}
+\begin{tabular}{ccccccc}
+\hline
+Ángulo      & Tiempo        & Velocidad Inicial & x              & y               & v              & theta           \\ \hline
+35          & 0.62          & 5                 & 2.539          & -0.105          & 5.202          & -38.07          \\
+\textbf{45} & \textbf{0.75} & \textbf{5}        & \textbf{2.651} & \textbf{-0.104} & \textbf{5.200} & \textbf{-47.17} \\
+55          & 0.81          & 5                 & 2.322          & 0.102           & 4.794          & -53.26          \\ \hline
+\end{tabular}
+\end{table}
+
+\section{Tiempo de Vuelo}
+
+    El tiempo total t en el cual un proyectil se mantiene en vuelo es llamado tiempo de vuelo. Después del vuelo, el proyectil regresa al eje horizontal x, por lo tanto y = 0. Notese que se omite la resistencia del aire en el proyectil.
+    
+    En la Tabla 2 se presenta el tiempo total de vuelo sobre distintos ángulos con la misma velocidad.
+
+\begin{table}[]
+\centering
+\caption{Tiempo de Vuelo}
+\label{my-label}
+\begin{tabular}{ccc}
+\hline
+Ángulo & Velocidad & \textbf{Tiempo} \\ \hline
+35     & 5         & \textbf{0.5852} \\ \hline
+40     & 5         & \textbf{0.6559} \\ \hline
+45     & 5         & \textbf{0.7215} \\ \hline
+50     & 5         & \textbf{0.7816} \\ \hline
+55     & 5         & \textbf{0.8358} \\ \hline
+\end{tabular}
+\end{table}
+
+
+\section{Altura Máxima}
+
+La mayor altura que un objeto puede alcanzar es conocida como altura máxima. Es el incremento de la altura hasta que la ultima unidad de velocidad es igual a cero.
+
+En la Tabla 3 se presentan los resultados de lanzar un proyectil con distíntos ángulos para determinar la altura de cada uno. Podemos observar que el ángulo que mayor altura alcanza es el ángulo de 90 grados, también se observa que si la diferencia de un tiro con ángulo A con respecto al tiro vertical (90 grados), es la misma a la diferencia de otro angulo B con respecto al tiro vertical, la altura máxima de los dos tiros es igual. Por ejemplo los angulos 91 y 89 y los angulos 100 y 80 tienen la misma altura máxima.
+
+\begin{table}[]
+\centering
+\caption{My caption}
+\label{my-label}
+\begin{tabular}{ccc}
+\hline
+Ángulo & Velocidad & \textbf{Altura Máxima} \\ \hline
+100    & 5         & \textbf{4.94}          \\ \hline
+91     & 5         & \textbf{5.100}         \\ \hline
+90     & 5         & \textbf{5.102}         \\ \hline
+89     & 5         & \textbf{5.100}         \\ \hline
+80     & 5         & \textbf{4.94}          \\ \hline
+\end{tabular}
+\end{table}
+
+\section{Distancia Máxima}
+
+La distancia maxima es aquella distancia que se desplaza el proyectil cuando regresa a su altura inicial (y = 0).
+ 
+En la Tabla 4 se muestran resultados de las distancias máximas sobre distintos angulos con la misma velocidad inicial.
+
+\begin{table}[]
+\centering
+\caption{My caption}
+\label{my-label}
+\begin{tabular}{ccc}
+\hline
+Ángulo & Velocidad & \textbf{Distancia Máxima} \\ \hline
+40     & 5         & \textbf{2.51}             \\ \hline
+43     & 5         & \textbf{2.54}             \\ \hline
+45     & 5         & \textbf{2.55}             \\ \hline
+47     & 5         & \textbf{2.54}             \\ \hline
+50     & 5         & \textbf{2.51}             \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+
+\end{document}

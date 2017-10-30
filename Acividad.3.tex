@@ -1,0 +1,106 @@
+\documentclass{article}
+
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+  \usepackage{graphicx}
+\fi
+
+% used in maketitle
+\title{Gráfica de Tiros Parabólicos}
+\author{César Andrés Pérez Robinson}
+
+% Enable SageTeX to run SageMath code right inside this LaTeX file.
+% documentation: http://mirrors.ctan.org/macros/latex/contrib/sagetex/sagetexpackage.pdf
+% \usepackage{sagetex}
+
+\begin{document}
+\maketitle
+
+\section{Movimiento Parabólico}
+
+Se denomina movimiento parabólico, al movimiento relizado por cualquier parábola. Se corresponde con la trayectoria ideal de un proyectil que se mueve en un medio que no ofrece resistencia al avance y que está sujeto a un campo gravitatorio uniforme. El movimiento parabólico es un ejemplo deun movimiento realizado porun objeto en dos dimensiones o sobre un plano.
+
+\subsection{Distintos Tiros con Misma Velocidad Inicial y Distintos Ángulos}
+
+Se utiliza el graficador Gnuplot para realizar la Figura 1, que muestra distintos tiros, todos realizados con velocidad inicial 10 m/, pero con los distintos ángulos iniciales: 15º, 30º, 45º, 60º, 75º y 90.
+
+\begin{figure}
+
+\includegraphics[width=\linewidth]{Grafica}
+
+\caption{Distintos Tiros}
+
+\label{fig:Distintos Tiros1}
+
+\end{figure}
+
+\subsection{Códigos Utilizados}
+
+Para generar la gráfica de la Figura 1, se utilizó el siguiente código:
+
+\begin{verbatim}
+program vector
+
+  implicit none
+
+
+  ! definimos constantes
+  real, parameter :: g = 9.81
+  real, parameter :: pi = 3.1415927
+  real, parameter :: deltat = .01
+
+  ! definimos las variables
+  real :: u, a, t
+  real, dimension (1000) :: x, y
+  integer :: i, j
+  integer, parameter :: ntimes = 1000
+  real :: fi, fj 
+ 
+
+  ! Leer los valores para el ángulo a y la velicidad inicial u desde
+  ! la terminal
+  write (*,*) 'Dame la velocidad inicial y el ángulo'
+  read (*,*) a, u
+
+  
+  ! convirtiendo ángulo a radianes
+  a = a * pi / 180.0
+  
+  ! las ecuaciones de la posición en x y y
+ ! x = u * cos(a) * i
+  !y = u * sin(a) * i - 0.5 * g * i * i
+  
+  do j = 15, 90, 15
+     fj = float(j)
+     a = fj * pi / 180.0
+  write(*,*) " "
+  do i = 1, ntimes
+     fi = float(i)
+     t = fi * deltat
+  x(i) = u * cos(a) * t
+  y(i) = u * sin(a) * t - 0.5 * g * t * t
+  if (y(i) < 0) exit
+  write(*,*) x(i), y(i)
+  
+
+end do
+end do
+
+ 
+ 
+
+  !write(*,*) 'Modulus squared = ',x
+
+end program vector
+
+\end{verbatim}
+
+
+
+\end{document}
