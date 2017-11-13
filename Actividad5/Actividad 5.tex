@@ -1,0 +1,100 @@
+\documentclass{article}
+
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+\usepackage{graphicx}
+
+% used in maketitle
+\title{Órbita de la Tierra}
+\author{César Andrés Pérez Robinson}
+
+% Enable SageTeX to run SageMath code right inside this LaTeX file.
+% documentation: http://mirrors.ctan.org/macros/latex/contrib/sagetex/sagetexpackage.pdf
+% \usepackage{sagetex}
+
+\begin{document}
+\maketitle
+
+\section{Órbita}
+Se presenta un código y una gráfica que simula el movimiento de la Tierra alrededor del Sol.
+
+Suponiendo que la Tierra giera alrededordel Sol siguiendo un movimiento circular. Por lo tanto, se fija la distancia en la que la Tierra se mueve alrededor del Sol una distancia R fija (150,000,000 km) y tarda 365.26 días en dar una vuelta completa.
+
+\subsection{Código utilizado}
+\begin{verbatim}
+
+  program orbita
+
+    implicit none
+  double precision :: T = 365.26d0, omega, dteta 
+  double precision :: G = 4.302d-3, pi
+  double precision :: R = 1.5d+8
+  double precision :: Ms = 1.98855d+30
+  double precision :: Vt, ds, dt, P, a, fi
+  integer :: i
+  integer, parameter :: ntimes = 360
+  double precision, dimension (0 : ntimes) :: x, y
+  
+  parameter (pi = 3.141593d0)
+
+  open(unit=3, file="tierra.dat", status="unknown")
+  
+
+  !Cambiando angulos a radianes
+  
+  a = a * pi / 180.0d0
+
+  !Velocidad angular
+
+  omega = 2.0d0 * pi / T
+
+  !Velocidad Tangente
+
+  Vt = R * omega
+
+  !Definiendo ds y dt
+  
+  dt = 365.260d0 / 360.0d0
+
+  ds = Vt * dt
+
+  !Para obtener el delta de teta
+
+  dteta = 2.0d0 * pi / 3.6d2
+
+  !Para las posiciones
+
+  do i = 0, ntimes
+     fi = float(i)
+
+     x(i) = R * dcos(fi * dteta)
+     y(i) = R * dsin(fi * dteta)
+
+     write(3,*) x(i), y(i)
+
+  end do
+  
+
+  
+
+  close(unit=3)
+
+  
+  end program
+\end{verbatim}
+
+\subsection{Gráfica resultante}
+La siguiente gráfica Figura 1 fue desarrollada en gnuplot con los datos obtenidos del programa anterior.
+\begin{figure}
+    \includegraphics[width=\linewidth]{grafica.png}
+    \caption{Movimiento circular de la Tierra}
+    \label{fig:Movimiento circular de la Tierra}
+\end{figure}
+\end{document}
