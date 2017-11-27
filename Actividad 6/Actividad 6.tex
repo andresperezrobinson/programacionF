@@ -1,0 +1,121 @@
+\documentclass{article}
+
+% set font encoding for PDFLaTeX or XeLaTeX
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+\usepackage{graphicx}
+
+% used in maketitle
+\title{Órbita de la Luna}
+\author{César Andrés Pérez Robinson}
+
+% Enable SageTeX to run SageMath code right inside this LaTeX file.
+% documentation: http://mirrors.ctan.org/macros/latex/contrib/sagetex/sagetexpackage.pdf
+% \usepackage{sagetex}
+
+\begin{document}
+\maketitle
+\section{Movimiento de la Luna}
+En este trabajo se agrega el movimiento de la Luna al sistema Tierra-Sol.
+Se supone que la Tierra gira alrededor del Sol en un movimiento circular. De la misma manera, supondremos que la Luna gira alrededor de la Tierra siguiento una órbita circular y que tarda 27 días, 7 horas, 43 minutos y 11.5 segundos en completar una vuelta a la tierra.
+
+\section{Código Utilizado}
+A continuación se muestra el código FORTRAN utilizado para obtener los datos correspondientes. Se utiliza una subrutina.
+\begin{verbatim}
+
+subroutine orbitas (Rad1, Rad2, Ang1, Ang2, tiempo, xpos, ypos)
+  double precision, intent(in) :: Rad1, Rad2, Ang1, Ang2, tiempo
+  double precision, intent(out) :: xpos, ypos
+
+  xpos = Rad1 * dcos(Ang1) + Rad2 * dcos(Ang2)
+
+  ypos = Rad1 * dsin(Ang1) + Rad2 * dsin(Ang2)
+
+end subroutine orbitas
+
+  program orbita
+
+    implicit none
+  double precision :: T = 365.26d0, omega, dteta, omegal 
+  double precision :: G = 4.302d-3, pi
+  double precision :: R = 1.5d+8
+  double precision :: Ms = 1.98855d+30
+  double precision :: Vt, ds, dt, P, a, fi, al
+  integer :: i
+  integer, parameter :: ntimes = 360
+  double precision, dimension (0 : ntimes) :: x, y
+  double precision :: Rad1 = 1.5d+8
+  double precision :: Rad2
+  double precision :: Ang1
+  double precision :: Ang2
+  double precision :: tl = 27.32166088d0
+  double precision :: xpos, ypos  
+  
+  parameter (pi = 3.141593d0)
+
+  open(unit=5, file="Moon.dat", status="unknown")
+  
+  Rad2 = Rad1 / 5.0d0
+  
+  !Cambiando angulos a radianes
+  
+  !a = a * pi / 180.0d0
+
+  !Velocidad angular
+
+  omega = 2.0d0 * pi / T
+
+  omegal = 2.0d0 * pi / tl
+
+  !Velocidad Tangente
+
+  Vt = R * omega
+
+  !Definiendo ds y dt
+  
+  dt = 365.260d0 / 360.0d0
+
+  ds = Vt * dt
+
+  !Para obtener el delta de teta
+
+  dteta = 2.0d0 * pi / 3.6d2 
+
+  !Para las posiciones
+
+  do i = 0, ntimes
+     fi = dble(i)
+     
+     Ang2 = fi * omegal
+
+     Ang1 = fi * omega
+
+     call orbitas(Rad1, Rad2, Ang1, Ang2, 5.0d0, xpos, ypos)
+     x(i) = xpos
+     y(i) = ypos
+
+     write(5,*) x(i), y(i)
+
+  end do
+
+  close(unit=5)
+  
+  end program
+
+\end{verbatim}
+
+\section{Gráfica de los datos}
+La Figura 1 muestra los datos obtenidos con el código anterior. Adicionalmente, se le agrega a la gráfica los datos de la órbita de la tierra. Por lo que se obtiene la órbita de la Luna y la órbita de la tierra en el sistema Tierra-Sol.
+
+\begin{figure}
+    \includegraphics[width=\linewidth]{GraficaTL.png}
+    \caption{Órbita Luna y Tierra alrededor del Sol}
+    \end{figure}
+
+\end{document}
